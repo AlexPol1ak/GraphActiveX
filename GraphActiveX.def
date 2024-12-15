@@ -1,0 +1,10 @@
+﻿; GraphActiveX.def: объявляет параметры модуля.
+
+LIBRARY
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+	DllInstall		PRIVATE

@@ -1,0 +1,18 @@
+﻿// GraphActiveX.idl: источник языка IDL для GraphActiveX
+//
+
+// Этот файл будет обработан средством MIDL для
+// создание библиотеки типов ($handlersafeidlname$.tlb) и кода маршалирования.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(60818e62-e786-4da7-b7d0-dfe0b3997ad9),
+	version(1.0),
+]
+library GraphActiveXLib
+{
+	importlib("stdole2.tlb");
+};
+

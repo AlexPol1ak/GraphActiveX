@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphActiveX", "GraphActiveX.vcxproj", "{032C7FED-1212-4216-88F1-B82632123EB2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphActiveXPS", "GraphActiveXPS\GraphActiveXPS.vcxproj", "{928D536D-AEAE-47E0-8482-8CA81F060E97}"
+	ProjectSection(ProjectDependencies) = postProject
+		{032C7FED-1212-4216-88F1-B82632123EB2} = {032C7FED-1212-4216-88F1-B82632123EB2}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{032C7FED-1212-4216-88F1-B82632123EB2}.Debug|x64.ActiveCfg = Debug|x64
+		{032C7FED-1212-4216-88F1-B82632123EB2}.Debug|x64.Build.0 = Debug|x64
+		{032C7FED-1212-4216-88F1-B82632123EB2}.Debug|x86.ActiveCfg = Debug|Win32
+		{032C7FED-1212-4216-88F1-B82632123EB2}.Debug|x86.Build.0 = Debug|Win32
+		{032C7FED-1212-4216-88F1-B82632123EB2}.Release|x64.ActiveCfg = Release|x64
+		{032C7FED-1212-4216-88F1-B82632123EB2}.Release|x64.Build.0 = Release|x64
+		{032C7FED-1212-4216-88F1-B82632123EB2}.Release|x86.ActiveCfg = Release|Win32
+		{032C7FED-1212-4216-88F1-B82632123EB2}.Release|x86.Build.0 = Release|Win32
+		{928D536D-AEAE-47E0-8482-8CA81F060E97}.Debug|x64.ActiveCfg = Debug|x64
+		{928D536D-AEAE-47E0-8482-8CA81F060E97}.Debug|x86.ActiveCfg = Debug|Win32
+		{928D536D-AEAE-47E0-8482-8CA81F060E97}.Release|x64.ActiveCfg = Release|x64
+		{928D536D-AEAE-47E0-8482-8CA81F060E97}.Release|x86.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
