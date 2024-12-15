@@ -65,7 +65,7 @@ STDMETHODIMP CGraphCtl::put_MinY(SHORT newVal)
 
 STDMETHODIMP CGraphCtl::get_MaxY(SHORT* pVal)
 {
-    *pVal = m_MinY;
+    *pVal = m_MaxY;
 
     return S_OK;
 }
