@@ -45,6 +45,12 @@ public:
 
 	CGraphCtl()
 	{
+		m_clrBackColor = RGB(255, 0, 0);
+		m_clrForeColor = RGB(255, 10, 50);
+		m_MaxX = 50;
+		m_MinX = 1;
+		m_MaxY = 50;
+		m_MinY = 1;
 	}
 
 DECLARE_OLEMISC_STATUS(OLEMISC_RECOMPOSEONRESIZE |
@@ -179,12 +185,17 @@ public:
 		return S_OK;
 	}
 
-	OLE_COLOR m_clrBackColor;
+	OLE_COLOR m_clrBackColor = RGB(255, 0, 0);
+	SHORT m_MinX = 1;
+	SHORT m_MaxX = 50;
+	SHORT m_MinY = 1;
+	SHORT m_MaxY = 50;
+
 	void OnBackColorChanged()
 	{
 		ATLTRACE(_T("OnBackColorChanged\n"));
 	}
-	OLE_COLOR m_clrForeColor;
+	OLE_COLOR m_clrForeColor = RGB(255, 10, 50);
 	void OnForeColorChanged()
 	{
 		ATLTRACE(_T("OnForeColorChanged\n"));
