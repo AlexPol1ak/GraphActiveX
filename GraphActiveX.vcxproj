@@ -265,6 +265,7 @@
     <ResourceCompile Include="GraphActiveX.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="GraphActiveX.def" />
     <None Include="GraphActiveX.rgs" />
     <None Include="GraphCtl.htm">

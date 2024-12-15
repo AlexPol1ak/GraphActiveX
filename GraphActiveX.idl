@@ -25,6 +25,14 @@ interface IGraphCtl : IDispatch
 	HRESULT ForeColor([in]OLE_COLOR clr);
 	[propget, bindable, requestedit, id(DISPID_FORECOLOR)]
 	HRESULT ForeColor([out,retval]OLE_COLOR* pclr);
+	[propget, id(1), helpstring("Минимальное значение x")] HRESULT MinX([out, retval] SHORT* pVal);
+	[propput, id(1), helpstring("Минимальное значение x")] HRESULT MinX([in] SHORT newVal);
+	[propget, id(2), helpstring("Максимальное значение X")] HRESULT MaxX([out, retval] SHORT* pVal);
+	[propput, id(2), helpstring("Максимальное значение X")] HRESULT MaxX([in] SHORT newVal);
+	[propget, id(3), helpstring("Минимальное значение y")] HRESULT MinY([out, retval] SHORT* pVal);
+	[propput, id(3), helpstring("Минимальное значение y")] HRESULT MinY([in] SHORT newVal);
+	[propget, id(4), helpstring("Максимальное значение y")] HRESULT MaxY([out, retval] SHORT* pVal);
+	[propput, id(4), helpstring("Максимальное значение y")] HRESULT MaxY([in] SHORT newVal);
 };
 
 [

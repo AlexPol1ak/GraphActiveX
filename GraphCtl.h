@@ -204,6 +204,14 @@ public:
 	void FinalRelease()
 	{
 	}
+	STDMETHOD(get_MinX)(SHORT* pVal);
+	STDMETHOD(put_MinX)(SHORT newVal);
+	STDMETHOD(get_MaxX)(SHORT* pVal);
+	STDMETHOD(put_MaxX)(SHORT newVal);
+	STDMETHOD(get_MinY)(SHORT* pVal);
+	STDMETHOD(put_MinY)(SHORT newVal);
+	STDMETHOD(get_MaxY)(SHORT* pVal);
+	STDMETHOD(put_MaxY)(SHORT newVal);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(GraphCtl), CGraphCtl)

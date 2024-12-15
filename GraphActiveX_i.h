@@ -114,6 +114,30 @@ EXTERN_C const IID IID_IGraphCtl;
         virtual /* [id][requestedit][bindable][propget] */ HRESULT STDMETHODCALLTYPE get_ForeColor( 
             /* [retval][out] */ OLE_COLOR *pclr) = 0;
         
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_MinX( 
+            /* [retval][out] */ SHORT *pVal) = 0;
+        
+        virtual /* [helpstring][id][propput] */ HRESULT STDMETHODCALLTYPE put_MinX( 
+            /* [in] */ SHORT newVal) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_MaxX( 
+            /* [retval][out] */ SHORT *pVal) = 0;
+        
+        virtual /* [helpstring][id][propput] */ HRESULT STDMETHODCALLTYPE put_MaxX( 
+            /* [in] */ SHORT newVal) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_MinY( 
+            /* [retval][out] */ SHORT *pVal) = 0;
+        
+        virtual /* [helpstring][id][propput] */ HRESULT STDMETHODCALLTYPE put_MinY( 
+            /* [in] */ SHORT newVal) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_MaxY( 
+            /* [retval][out] */ SHORT *pVal) = 0;
+        
+        virtual /* [helpstring][id][propput] */ HRESULT STDMETHODCALLTYPE put_MaxY( 
+            /* [in] */ SHORT newVal) = 0;
+        
     };
     
     
@@ -199,6 +223,46 @@ EXTERN_C const IID IID_IGraphCtl;
             IGraphCtl * This,
             /* [retval][out] */ OLE_COLOR *pclr);
         
+        DECLSPEC_XFGVIRT(IGraphCtl, get_MinX)
+        /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_MinX )( 
+            IGraphCtl * This,
+            /* [retval][out] */ SHORT *pVal);
+        
+        DECLSPEC_XFGVIRT(IGraphCtl, put_MinX)
+        /* [helpstring][id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_MinX )( 
+            IGraphCtl * This,
+            /* [in] */ SHORT newVal);
+        
+        DECLSPEC_XFGVIRT(IGraphCtl, get_MaxX)
+        /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_MaxX )( 
+            IGraphCtl * This,
+            /* [retval][out] */ SHORT *pVal);
+        
+        DECLSPEC_XFGVIRT(IGraphCtl, put_MaxX)
+        /* [helpstring][id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_MaxX )( 
+            IGraphCtl * This,
+            /* [in] */ SHORT newVal);
+        
+        DECLSPEC_XFGVIRT(IGraphCtl, get_MinY)
+        /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_MinY )( 
+            IGraphCtl * This,
+            /* [retval][out] */ SHORT *pVal);
+        
+        DECLSPEC_XFGVIRT(IGraphCtl, put_MinY)
+        /* [helpstring][id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_MinY )( 
+            IGraphCtl * This,
+            /* [in] */ SHORT newVal);
+        
+        DECLSPEC_XFGVIRT(IGraphCtl, get_MaxY)
+        /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_MaxY )( 
+            IGraphCtl * This,
+            /* [retval][out] */ SHORT *pVal);
+        
+        DECLSPEC_XFGVIRT(IGraphCtl, put_MaxY)
+        /* [helpstring][id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_MaxY )( 
+            IGraphCtl * This,
+            /* [in] */ SHORT newVal);
+        
         END_INTERFACE
     } IGraphCtlVtbl;
 
@@ -246,6 +310,30 @@ EXTERN_C const IID IID_IGraphCtl;
 
 #define IGraphCtl_get_ForeColor(This,pclr)	\
     ( (This)->lpVtbl -> get_ForeColor(This,pclr) ) 
+
+#define IGraphCtl_get_MinX(This,pVal)	\
+    ( (This)->lpVtbl -> get_MinX(This,pVal) ) 
+
+#define IGraphCtl_put_MinX(This,newVal)	\
+    ( (This)->lpVtbl -> put_MinX(This,newVal) ) 
+
+#define IGraphCtl_get_MaxX(This,pVal)	\
+    ( (This)->lpVtbl -> get_MaxX(This,pVal) ) 
+
+#define IGraphCtl_put_MaxX(This,newVal)	\
+    ( (This)->lpVtbl -> put_MaxX(This,newVal) ) 
+
+#define IGraphCtl_get_MinY(This,pVal)	\
+    ( (This)->lpVtbl -> get_MinY(This,pVal) ) 
+
+#define IGraphCtl_put_MinY(This,newVal)	\
+    ( (This)->lpVtbl -> put_MinY(This,newVal) ) 
+
+#define IGraphCtl_get_MaxY(This,pVal)	\
+    ( (This)->lpVtbl -> get_MaxY(This,pVal) ) 
+
+#define IGraphCtl_put_MaxY(This,newVal)	\
+    ( (This)->lpVtbl -> put_MaxY(This,newVal) ) 
 
 #endif /* COBJMACROS */
 
