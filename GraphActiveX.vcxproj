@@ -217,9 +217,11 @@
     <ClInclude Include="dllmain.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GraphActiveX_i.h" />
+    <ClInclude Include="GraphCtl.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="_IGraphCtlEvents_CP.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -251,6 +253,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="GraphCtl.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -264,9 +267,16 @@
   <ItemGroup>
     <None Include="GraphActiveX.def" />
     <None Include="GraphActiveX.rgs" />
+    <None Include="GraphCtl.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="GraphCtl.rgs" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="GraphActiveX.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="GraphCtl.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

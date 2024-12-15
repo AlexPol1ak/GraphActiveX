@@ -37,6 +37,12 @@
     <ClInclude Include="pch.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="_IGraphCtlEvents_CP.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphCtl.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphActiveX.cpp">
@@ -49,6 +55,9 @@
       <Filter>Созданные файлы</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphCtl.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -64,10 +73,19 @@
     <None Include="GraphActiveX.def">
       <Filter>Исходные файлы</Filter>
     </None>
+    <None Include="GraphCtl.rgs">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="GraphCtl.htm" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="GraphActiveX.idl">
       <Filter>Исходные файлы</Filter>
     </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="GraphCtl.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>

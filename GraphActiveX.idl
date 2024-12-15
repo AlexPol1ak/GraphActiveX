@@ -4,8 +4,28 @@
 // Этот файл будет обработан средством MIDL для
 // создание библиотеки типов ($handlersafeidlname$.tlb) и кода маршалирования.
 
+#include "olectl.h"
 import "oaidl.idl";
 import "ocidl.idl";
+
+[
+	object,
+	uuid(3b3b5f67-0de0-48e0-96f6-9dfdf21f7488),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IGraphCtl : IDispatch
+{
+	[propput, bindable, requestedit, id(DISPID_BACKCOLOR)]
+	HRESULT BackColor([in]OLE_COLOR clr);
+	[propget, bindable, requestedit, id(DISPID_BACKCOLOR)]
+	HRESULT BackColor([out,retval]OLE_COLOR* pclr);
+	[propput, bindable, requestedit, id(DISPID_FORECOLOR)]
+	HRESULT ForeColor([in]OLE_COLOR clr);
+	[propget, bindable, requestedit, id(DISPID_FORECOLOR)]
+	HRESULT ForeColor([out,retval]OLE_COLOR* pclr);
+};
 
 [
 	uuid(60818e62-e786-4da7-b7d0-dfe0b3997ad9),
@@ -14,5 +34,22 @@ import "ocidl.idl";
 library GraphActiveXLib
 {
 	importlib("stdole2.tlb");
+	[
+		uuid(ce61696e-d646-4886-a457-d5ff6ad776b0)
+	]
+	dispinterface _IGraphCtlEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(439e1d31-62c7-4436-a938-490d0f4059ea),
+		control
+	]
+	coclass GraphCtl
+	{
+		[default] interface IGraphCtl;
+		[default, source] dispinterface _IGraphCtlEvents;
+	};
 };
 
