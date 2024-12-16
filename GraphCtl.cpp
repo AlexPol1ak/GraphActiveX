@@ -16,7 +16,7 @@ STDMETHODIMP CGraphCtl::get_MinX(SHORT* pVal)
 
 STDMETHODIMP CGraphCtl::put_MinX(SHORT newVal)
 {
-    if (newVal < 1) return Error("The value must be greater than 1.");
+    if (newVal < -5) return Error("The value must be greater than -5.");
     if (newVal >= m_MaxX) return Error("The minimum value of X must be less than the maximum value of X.");
 
     m_MinX = newVal;
@@ -54,7 +54,7 @@ STDMETHODIMP CGraphCtl::get_MinY(SHORT* pVal)
 
 STDMETHODIMP CGraphCtl::put_MinY(SHORT newVal)
 {
-    if (newVal < 1) return Error("The value must be greater than 1.");
+    if (newVal < -5) return Error("The value must be greater than -5.");
     if (newVal >= m_MaxY) return Error("The minimum value of Y must be less than the maximum value of Y.");
 
     m_MinY = newVal;
@@ -77,4 +77,25 @@ STDMETHODIMP CGraphCtl::put_MaxY(SHORT newVal)
     m_MaxY = newVal;
 
     return S_OK;
+}
+
+
+void CGraphCtl::CalcPoints(const RECT& rc)
+{
+    m_points.clear(); // Очищаем предыдущие точки
+
+    int width = rc.right - rc.left;
+    int height = rc.bottom - rc.top;
+
+    for (int x = 0; x < width; ++x)
+    {
+        // Пример функции: y = sin(x), масштабируем для визуализации
+        double normalizedX = (x - width / 2.0) * 0.05; // Нормализация координаты X
+        double functionValue = sin(normalizedX);      // Значение функции (пример sin(x))
+
+        POINT pt;
+        pt.x = x;
+        pt.y = height / 2 - static_cast<int>(functionValue * 50); // Масштабирование для отрисовки
+        m_points.push_back(pt); // Добавляем точку в список
+    }
 }

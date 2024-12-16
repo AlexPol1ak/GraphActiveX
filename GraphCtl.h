@@ -47,12 +47,15 @@ public:
 	{
 		m_clrBackColor = RGB(255, 0, 0);
 		m_clrForeColor = RGB(255, 10, 50);
-		m_MaxX = 50;
-		m_MinX = 1;
-		m_MaxY = 50;
-		m_MinY = 1;
+		m_MaxX = 40;
+		m_MinX = -5;
+		m_MaxY = 40;
+		m_MinY = -5;
 	}
+private:
+	std::vector<POINT> m_points; // Хранение точек графика
 
+public:
 DECLARE_OLEMISC_STATUS(OLEMISC_RECOMPOSEONRESIZE |
 	OLEMISC_CANTLINKINSIDE |
 	OLEMISC_INSIDEOUT |
@@ -143,44 +146,50 @@ END_MSG_MAP()
 public:
 	HRESULT OnDraw(ATL_DRAWINFO& di)
 	{
+		HDC hdc = di.hdcDraw;
+
 		RECT& rc = *(RECT*)di.prcBounds;
-		// Ограничивает область вырезания прямоугольником, указанным в di.prcBounds
-		HRGN hRgnOld = nullptr;
-		if (GetClipRgn(di.hdcDraw, hRgnOld) != 1)
-			hRgnOld = nullptr;
-		bool bSelectOldRgn = false;
 
-		HRGN hRgnNew = CreateRectRgn(rc.left, rc.top, rc.right, rc.bottom);
+		// 1. Рассчитываем точки
+		CalcPoints(rc);
 
-		if (hRgnNew != nullptr)
+		// 2. Заполняем фон
+		HBRUSH hBrushBackground = CreateSolidBrush(RGB(240, 240, 240)); // Светло-серый фон
+		FillRect(hdc, &rc, hBrushBackground);
+		DeleteObject(hBrushBackground);
+
+		// 3. Рисуем оси координат
+		HPEN hAxisPen = CreatePen(PS_SOLID, 2, RGB(0, 0, 0)); // Чёрные оси
+		SelectObject(hdc, hAxisPen);
+
+		int width = rc.right - rc.left;
+		int height = rc.bottom - rc.top;
+
+		// Горизонтальная ось
+		MoveToEx(hdc, 0, height / 2, NULL);
+		LineTo(hdc, width, height / 2);
+
+		// Вертикальная ось
+		MoveToEx(hdc, width / 2, 0, NULL);
+		LineTo(hdc, width / 2, height);
+
+		DeleteObject(hAxisPen);
+
+		// 4. Рисуем функцию
+		HPEN hGraphPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0)); // Красная линия для функции
+		SelectObject(hdc, hGraphPen);
+
+		if (!m_points.empty())
 		{
-			bSelectOldRgn = (SelectClipRgn(di.hdcDraw, hRgnNew) != ERROR);
+			MoveToEx(hdc, m_points[0].x, m_points[0].y, NULL);
+
+			for (size_t i = 1; i < m_points.size(); ++i)
+			{
+				LineTo(hdc, m_points[i].x, m_points[i].y);
+			}
 		}
 
-		Rectangle(di.hdcDraw, rc.left, rc.top, rc.right, rc.bottom);
-		SetTextAlign(di.hdcDraw, TA_CENTER|TA_BASELINE);
-		LPCTSTR pszText = _T("GraphCtl");
-#ifndef _WIN32_WCE
-		TextOut(di.hdcDraw,
-			(rc.left + rc.right) / 2,
-			(rc.top + rc.bottom) / 2,
-			pszText,
-			lstrlen(pszText));
-#else
-		ExtTextOut(di.hdcDraw,
-			(rc.left + rc.right) / 2,
-			(rc.top + rc.bottom) / 2,
-			ETO_OPAQUE,
-			nullptr,
-			pszText,
-			ATL::lstrlen(pszText),
-			nullptr);
-#endif
-
-		if (bSelectOldRgn)
-			SelectClipRgn(di.hdcDraw, hRgnOld);
-
-		DeleteObject(hRgnNew);
+		DeleteObject(hGraphPen);
 
 		return S_OK;
 	}
@@ -223,6 +232,9 @@ public:
 	STDMETHOD(put_MinY)(SHORT newVal);
 	STDMETHOD(get_MaxY)(SHORT* pVal);
 	STDMETHOD(put_MaxY)(SHORT newVal);
+
+	void CalcPoints(const RECT& rc);
+
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(GraphCtl), CGraphCtl)
