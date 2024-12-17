@@ -152,18 +152,19 @@ void CGraphCtl::DrawGraph(HDC& hdc)
 
 LRESULT CGraphCtl::OnLButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-    if (m_LButtonClick == TRUE)
-    {
-        bHandled = TRUE;
-        return Error("График уже нарисован");
-    }
-    else
+    if (m_LButtonClick == FALSE && m_RButtonClick == TRUE)
     {
         m_LButtonClick = TRUE;
         m_RButtonClick = FALSE;
-        ::MessageBox(nullptr, _T("Левая кнопка мыши нажата"), _T("Сообщение"), MB_OK | MB_ICONINFORMATION);
+        m_ShowGraph = TRUE;
+        Fire_ShowGraph(TRUE);
         bHandled = TRUE;
-
+        FireViewChange();      
+    }
+    else
+    {     
+        bHandled = TRUE;
+        return Error("График уже нарисован");
     }    
     return 0;
 }
@@ -171,18 +172,21 @@ LRESULT CGraphCtl::OnLButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 
 LRESULT CGraphCtl::OnRButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-    if (m_RButtonClick == TRUE)
+    if (m_RButtonClick == FALSE && m_LButtonClick==TRUE)
     {
+        m_RButtonClick = TRUE;
+        m_LButtonClick = FALSE; 
+        m_ShowGraph = FALSE;
+        Fire_ShowGraph(FALSE);
         bHandled = TRUE;
-        return Error("График уже скрыт");
+        FireViewChange();
+        
     }
     else
     {
-        m_LButtonClick = FALSE;
-        m_RButtonClick = TRUE;
-
-        ::MessageBox(nullptr, _T("Правая кнопка мыши нажата"), _T("Сообщение"), MB_OK | MB_ICONINFORMATION);
         bHandled = TRUE;
+        return Error("График уже скрыт");
+       
     }
 
     return 0;

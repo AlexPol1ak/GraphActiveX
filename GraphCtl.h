@@ -212,7 +212,7 @@ private:
 	SHORT m_MaxY = 50;
 
 	BOOL m_LButtonClick = FALSE;
-	BOOL m_RButtonClick = FALSE;
+	BOOL m_RButtonClick = TRUE;
 
 };
 
