@@ -33,8 +33,8 @@ public:
 				strMessage.Format(_T("Сработал Fire_ShowGraph\nhr = 0x%08X\nsb = %s"),
 					hr, (sb == TRUE) ? _T("VARIANT_TRUE") : _T("VARIANT_FALSE"));
 
-				::MessageBox(nullptr, strMessage, _T("Сообщение"),
-					MB_OK | MB_ICONINFORMATION);
+				/*::MessageBox(nullptr, strMessage, _T("Сообщение"),
+					MB_OK | MB_ICONINFORMATION);*/
 			}
 		}
 		return hr;
