@@ -148,5 +148,42 @@ void CGraphCtl::DrawGraph(HDC& hdc)
     }
 
     DeleteObject(hGraphPen);
+}
 
+LRESULT CGraphCtl::OnLButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+    if (m_LButtonClick == TRUE)
+    {
+        bHandled = TRUE;
+        return Error("График уже нарисован");
+    }
+    else
+    {
+        m_LButtonClick = TRUE;
+        m_RButtonClick = FALSE;
+        ::MessageBox(nullptr, _T("Левая кнопка мыши нажата"), _T("Сообщение"), MB_OK | MB_ICONINFORMATION);
+        bHandled = TRUE;
+
+    }    
+    return 0;
+}
+
+
+LRESULT CGraphCtl::OnRButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+    if (m_RButtonClick == TRUE)
+    {
+        bHandled = TRUE;
+        return Error("График уже скрыт");
+    }
+    else
+    {
+        m_LButtonClick = FALSE;
+        m_RButtonClick = TRUE;
+
+        ::MessageBox(nullptr, _T("Правая кнопка мыши нажата"), _T("Сообщение"), MB_OK | MB_ICONINFORMATION);
+        bHandled = TRUE;
+    }
+
+    return 0;
 }

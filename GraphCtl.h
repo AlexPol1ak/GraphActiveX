@@ -115,6 +115,8 @@ END_CONNECTION_POINT_MAP()
 
 BEGIN_MSG_MAP(CGraphCtl)
 	CHAIN_MSG_MAP(CComControl<CGraphCtl>)
+	MESSAGE_HANDLER(WM_LBUTTONDOWN, OnLButtonDown)
+	MESSAGE_HANDLER(WM_RBUTTONDOWN, OnRButtonDown)
 	DEFAULT_REFLECTION_HANDLER()
 END_MSG_MAP()
 // Прототипы обработчика:
@@ -192,6 +194,9 @@ public:
 	STDMETHOD(get_MaxY)(SHORT* pVal);
 	STDMETHOD(put_MaxY)(SHORT newVal);
 
+	LRESULT OnLButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	LRESULT OnRButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+
 private:
 	void CalcPoints(const RECT& rc);
 	void DrawAxes(HDC& hdc, RECT &rc);
@@ -205,6 +210,9 @@ private:
 	SHORT m_MaxX = 50;
 	SHORT m_MinY = 1;
 	SHORT m_MaxY = 50;
+
+	BOOL m_LButtonClick = FALSE;
+	BOOL m_RButtonClick = FALSE;
 
 };
 
