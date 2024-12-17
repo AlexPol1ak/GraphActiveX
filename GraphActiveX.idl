@@ -49,6 +49,7 @@ library GraphActiveXLib
 	{
 		properties:
 		methods:
+			[id(1), helpstring("Отобразить график")] void ShowGraph([in] VARIANT_BOOL sb);
 	};
 	[
 		uuid(439e1d31-62c7-4436-a938-490d0f4059ea),
