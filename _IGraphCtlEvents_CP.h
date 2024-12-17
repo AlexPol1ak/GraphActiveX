@@ -1,10 +1,13 @@
 ﻿#pragma once
-
-using namespace ATL;
-
-template <class T>
-class CProxy_IGraphCtlEvents : public IConnectionPointImpl<T, &__uuidof(_IGraphCtlEvents), CComDynamicUnkArray>
+template<class T>
+class CProxy_IGraphCtlEvents :
+	public ATL::IConnectionPointImpl<T, &__uuidof(_IGraphCtlEvents)>
 {
-	// ПРЕДУПРЕЖДЕНИЕ: Мастер может повторить создание этого класса
 public:
+	HRESULT Fire_ShowGraph([in] VARIANT_BOOL sb)
+	{
+
+	}
+	
 };
+
