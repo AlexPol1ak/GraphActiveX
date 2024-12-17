@@ -51,6 +51,7 @@ public:
 		m_MinX = -5;
 		m_MaxY = 40;
 		m_MinY = -5;
+		m_ShowGraph = FALSE;
 	}
 
 public:
@@ -151,7 +152,7 @@ public:
 		CalcPoints(rc);
 
 		DrawAxes(hdc, rc);
-		DrawGraph(hdc);
+		if(m_ShowGraph) DrawGraph(hdc);
 
 		return S_OK;
 	}
@@ -195,6 +196,8 @@ private:
 	void CalcPoints(const RECT& rc);
 	void DrawAxes(HDC& hdc, RECT &rc);
 	void DrawGraph(HDC& hdc);
+
+	BOOL m_ShowGraph = FALSE;
 
 	std::vector<POINT> m_points; // Хранение точек графика
 

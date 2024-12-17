@@ -20,6 +20,7 @@ STDMETHODIMP CGraphCtl::put_MinX(SHORT newVal)
     if (newVal >= m_MaxX) return Error("The minimum value of X must be less than the maximum value of X.");
 
     m_MinX = newVal;
+    FireViewChange();
 
     return S_OK;
 }
@@ -39,6 +40,8 @@ STDMETHODIMP CGraphCtl::put_MaxX(SHORT newVal)
     
     if (newVal <= m_MinX) return Error("The maximum value of X must be greater than the minimum value of X.");
     m_MaxX = newVal;
+    FireViewChange();
+
 
     return S_OK;
 }
@@ -58,6 +61,8 @@ STDMETHODIMP CGraphCtl::put_MinY(SHORT newVal)
     if (newVal >= m_MaxY) return Error("The minimum value of Y must be less than the maximum value of Y.");
 
     m_MinY = newVal;
+    FireViewChange();
+
 
     return S_OK;
 }
@@ -75,6 +80,8 @@ STDMETHODIMP CGraphCtl::put_MaxY(SHORT newVal)
 {
     if (newVal <= m_MinY) return Error("The maximum value of Y must be greater than the minimum value of Y.");
     m_MaxY = newVal;
+    FireViewChange();
+
 
     return S_OK;
 }
