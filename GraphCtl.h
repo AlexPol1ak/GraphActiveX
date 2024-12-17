@@ -52,8 +52,6 @@ public:
 		m_MaxY = 40;
 		m_MinY = -5;
 	}
-private:
-	std::vector<POINT> m_points; // Хранение точек графика
 
 public:
 DECLARE_OLEMISC_STATUS(OLEMISC_RECOMPOSEONRESIZE |
@@ -150,55 +148,15 @@ public:
 
 		RECT& rc = *(RECT*)di.prcBounds;
 
-		// 1. Рассчитываем точки
 		CalcPoints(rc);
 
-		// 2. Заполняем фон
-		HBRUSH hBrushBackground = CreateSolidBrush(RGB(240, 240, 240)); // Светло-серый фон
-		FillRect(hdc, &rc, hBrushBackground);
-		DeleteObject(hBrushBackground);
-
-		// 3. Рисуем оси координат
-		HPEN hAxisPen = CreatePen(PS_SOLID, 2, RGB(0, 0, 0)); // Чёрные оси
-		SelectObject(hdc, hAxisPen);
-
-		int width = rc.right - rc.left;
-		int height = rc.bottom - rc.top;
-
-		// Горизонтальная ось
-		MoveToEx(hdc, 0, height / 2, NULL);
-		LineTo(hdc, width, height / 2);
-
-		// Вертикальная ось
-		MoveToEx(hdc, width / 2, 0, NULL);
-		LineTo(hdc, width / 2, height);
-
-		DeleteObject(hAxisPen);
-
-		// 4. Рисуем функцию
-		HPEN hGraphPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0)); // Красная линия для функции
-		SelectObject(hdc, hGraphPen);
-
-		if (!m_points.empty())
-		{
-			MoveToEx(hdc, m_points[0].x, m_points[0].y, NULL);
-
-			for (size_t i = 1; i < m_points.size(); ++i)
-			{
-				LineTo(hdc, m_points[i].x, m_points[i].y);
-			}
-		}
-
-		DeleteObject(hGraphPen);
+		DrawAxes(hdc, rc);
+		DrawGraph(hdc);
 
 		return S_OK;
 	}
 
 	OLE_COLOR m_clrBackColor = RGB(255, 0, 0);
-	SHORT m_MinX = 1;
-	SHORT m_MaxX = 50;
-	SHORT m_MinY = 1;
-	SHORT m_MaxY = 50;
 
 	void OnBackColorChanged()
 	{
@@ -233,7 +191,17 @@ public:
 	STDMETHOD(get_MaxY)(SHORT* pVal);
 	STDMETHOD(put_MaxY)(SHORT newVal);
 
+private:
 	void CalcPoints(const RECT& rc);
+	void DrawAxes(HDC& hdc, RECT &rc);
+	void DrawGraph(HDC& hdc);
+
+	std::vector<POINT> m_points; // Хранение точек графика
+
+	SHORT m_MinX = 1;
+	SHORT m_MaxX = 50;
+	SHORT m_MinY = 1;
+	SHORT m_MaxY = 50;
 
 };
 

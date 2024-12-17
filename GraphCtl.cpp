@@ -99,3 +99,47 @@ void CGraphCtl::CalcPoints(const RECT& rc)
         m_points.push_back(pt); // Добавляем точку в список
     }
 }
+
+void CGraphCtl::DrawAxes(HDC& hdc, RECT& rc)
+{
+    HBRUSH hBrushBackground = CreateSolidBrush(RGB(240, 240, 240)); // Светло-серый фон
+    FillRect(hdc, &rc, hBrushBackground);
+    DeleteObject(hBrushBackground);
+
+    HPEN hAxisPen = CreatePen(PS_SOLID, 2, RGB(0, 0, 0)); // Чёрные оси
+    SelectObject(hdc, hAxisPen);
+
+    int width = rc.right - rc.left;
+    int height = rc.bottom - rc.top;
+
+    // Горизонтальная ось
+    MoveToEx(hdc, 0, height / 2, NULL);
+    LineTo(hdc, width, height / 2);
+
+    // Вертикальная ось
+    MoveToEx(hdc, width / 2, 0, NULL);
+    LineTo(hdc, width / 2, height);
+
+    DeleteObject(hAxisPen);
+
+}
+
+void CGraphCtl::DrawGraph(HDC& hdc)
+{
+    // 4. Рисуем функцию
+    HPEN hGraphPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0)); // Красная линия для функции
+    SelectObject(hdc, hGraphPen);
+
+    if (!m_points.empty())
+    {
+        MoveToEx(hdc, m_points[0].x, m_points[0].y, NULL);
+
+        for (size_t i = 1; i < m_points.size(); ++i)
+        {
+            LineTo(hdc, m_points[i].x, m_points[i].y);
+        }
+    }
+
+    DeleteObject(hGraphPen);
+
+}
